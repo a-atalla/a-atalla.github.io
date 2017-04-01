@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "hexo": {
+    "deploy": "git push origin src && hexo generate --deploy",
     "version": "3.2.2"
   },
   "dependencies": {
