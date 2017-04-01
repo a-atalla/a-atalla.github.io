@@ -58,86 +58,6 @@
 </header>
 
     <section id="main" class="outer">
-      <article id="post-testing-asset-folder" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/01/testing-asset-folder/">testing_asset_folder</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      <a href="/2017/04/01/testing-asset-folder/" class="article-date">
-  <time datetime="2017-04-01T01:21:04.000Z" itemprop="datePublished">2017-04-01</time>
-</a>
-      
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-    
-      <article id="post-testing-comand-line" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/01/testing-comand-line/">testing_comand_line</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      <a href="/2017/04/01/testing-comand-line/" class="article-date">
-  <time datetime="2017-04-01T01:16:23.000Z" itemprop="datePublished">2017-04-01</time>
-</a>
-      
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-    
       <article id="post-nodejs-api-introduction" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -170,6 +90,47 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yarn add nodemon express body-parser morgan express-validator</div></pre></td></tr></table></figure>
 <p>ثم ننشئ ملف جافاسكربت جديد في نفس المجلد بإسم server.js وليكن محتواه كالتالي</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</div><div class="line"><span class="keyword">const</span> logger = <span class="built_in">require</span>(<span class="string">'morgan'</span>);</div><div class="line"><span class="keyword">const</span> bodyParser = <span class="built_in">require</span>(<span class="string">'body-parser'</span>);</div><div class="line"><span class="keyword">const</span> expressValidator = <span class="built_in">require</span>(<span class="string">'express-validator'</span>);</div><div class="line"></div><div class="line"><span class="comment">// Initializing the App</span></div><div class="line"><span class="keyword">const</span> app = express();</div><div class="line"></div><div class="line">app.use(logger(<span class="string">'dev'</span>));</div><div class="line">app.use(bodyParser.urlencoded(&#123; <span class="attr">extended</span>: <span class="literal">false</span> &#125;));</div><div class="line">app.use(bodyParser.json());</div><div class="line">app.use(expressValidator());</div><div class="line"></div><div class="line"><span class="comment">// Routes</span></div><div class="line">app.get(<span class="string">'/'</span>, (req, res)=&gt;&#123;</div><div class="line">  res.json(&#123;<span class="string">"success"</span>: <span class="literal">true</span>, <span class="string">'message'</span>: <span class="string">'Welcome to express server'</span>&#125;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// Starting the server</span></div><div class="line">app.listen(<span class="number">3000</span>, ()=&gt;&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">"Server is running at http://127.0.0.1:3000"</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+    
+      <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/30/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2017/03/30/hello-world/" class="article-date">
+  <time datetime="2017-03-30T17:45:31.000Z" itemprop="datePublished">2017-03-30</time>
+</a>
+      
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="مرحبا-بالعالم"><a href="#مرحبا-بالعالم" class="headerlink" title="مرحبا بالعالم"></a>مرحبا بالعالم</h2><p>بعد التوقف عن ممارسة هذه العادة لسنوات أعود لها من جديد , وأرجو أن تكون عودة نافعة لي ولكل المتابعين</p>
 
       
     </div>
