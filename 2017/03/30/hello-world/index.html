@@ -43,8 +43,6 @@
       <a id="logo" class="logo" href="/"></a>
       <nav id="main-nav">
         
-          <a class="main-nav-link" href="/">Home</a>
-        
           <a class="main-nav-link" href="/categories">Categories</a>
         
           <a class="main-nav-link" href="/tags">Tags</a>
@@ -129,6 +127,12 @@
 
 
 
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
 
 </section>
     <footer id="footer">
@@ -141,6 +145,20 @@
   </div>
 </footer>
     
+<script>
+  var disqus_shortname = 'a-atalla-github-io';
+  
+  var disqus_url = 'https://a-atalla.github.io/2017/03/30/hello-world/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
 
 <script src="/js/jquery.min.js"></script>
 
@@ -150,6 +168,7 @@
 
 
 <script src="/js/script.js"></script>
+
   </div>
 </body>
 </html>
