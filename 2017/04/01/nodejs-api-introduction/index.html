@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html dir="rtl">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Node API Tutorial-01- Introduction  | Atalla Dev Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="بسم الله الرحمن الرحيم أول مجموعة دروسة سيتم نشرها علي المدونة سنتكلم فيها عن كيفية  برمجة  restful-api  باستخدام  nodejs و express , لكن في مقالاتي هذه لن استخدم mongodb وهو المتبع في أغلب دروس  node">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node API Tutorial-01- Introduction ">
+<meta property="og:url" content="http://yoursite.com/2017/04/01/nodejs-api-introduction/index.html">
+<meta property="og:site_name" content="Atalla Dev Blog">
+<meta property="og:description" content="بسم الله الرحمن الرحيم أول مجموعة دروسة سيتم نشرها علي المدونة سنتكلم فيها عن كيفية  برمجة  restful-api  باستخدام  nodejs و express , لكن في مقالاتي هذه لن استخدم mongodb وهو المتبع في أغلب دروس  node">
+<meta property="og:updated_time" content="2017-04-01T00:12:11.232Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Node API Tutorial-01- Introduction ">
+<meta name="twitter:description" content="بسم الله الرحمن الرحيم أول مجموعة دروسة سيتم نشرها علي المدونة سنتكلم فيها عن كيفية  برمجة  restful-api  باستخدام  nodejs و express , لكن في مقالاتي هذه لن استخدم mongodb وهو المتبع في أغلب دروس  node">
+  
+    <link rel="alternate" href="/atom.xml" title="Atalla Dev Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Atalla Dev Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-nodejs-api-introduction" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/01/nodejs-api-introduction/" class="article-date">
+  <time datetime="2017-04-01T00:12:11.232Z" itemprop="datePublished">2017-04-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Node API Tutorial-01- Introduction 
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="بسم-الله-الرحمن-الرحيم"><a href="#بسم-الله-الرحمن-الرحيم" class="headerlink" title="بسم الله الرحمن الرحيم"></a>بسم الله الرحمن الرحيم</h1><p> أول مجموعة دروسة سيتم نشرها علي المدونة سنتكلم فيها عن كيفية  برمجة  restful-api  باستخدام  nodejs و express , لكن في مقالاتي هذه لن استخدم mongodb وهو المتبع في أغلب دروس  node لكني سأعمل علي واحدة من SQL Databases وهي PostgreSQL</p>
+<p> لا يتسع المجال هنا للمقارنة بين أنواع قواعد البيانات المختلفة  SQL Vs NoSQL  كذلك إختياري  لـ PostgreSQL ماهو إلا تفضيل شخصي ولكن يمكنك إستخدام  MySQL أو حتي SQlite3 , أو أي قاعدة بيانات مدعومة من مكتبة Knex وهي اللتي وقع عليها إختياري لبساطتها و في نفس الوقت إمكانياتها المتقدمة</p>
+<p> كذلك سأستخدم مدير حزم Yarn بدلا من  npm  , يمكنك معرفة كيفية تثبيته من الموقع الخاص به .</p>
+<h1 id="1-إنشاء-ملف-packages-json-وتثبيت-متطلبات-المشروع"><a href="#1-إنشاء-ملف-packages-json-وتثبيت-متطلبات-المشروع" class="headerlink" title="1- إنشاء ملف packages.json وتثبيت متطلبات المشروع"></a>1- إنشاء ملف packages.json وتثبيت متطلبات المشروع</h1><p> أول شئ نقوم بعمل مجلد جديد للمشروع وليكن بإسم <code>api-demo</code> ومن داخله يتم إنشاء ملف <code>packages.json</code> ولاحظ أننا غيرنا إسم الملف الافتراضي من <code>index.js</code> إلي <code>server.js</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">ahmed ~ [06:03:55]</div><div class="line">$ <span class="built_in">cd</span> api-demo/</div><div class="line">ahmed ~/api-demo [06:03:57]</div><div class="line">$ npm init</div><div class="line">This utility will walk you through creating a package.json file.</div><div class="line">It only covers the most common items, and tries to guess sensible defaults.</div><div class="line"></div><div class="line">See `npm <span class="built_in">help</span> json` <span class="keyword">for</span> definitive documentation on these fields</div><div class="line">and exactly what they do.</div><div class="line"></div><div class="line">Use `npm install &lt;pkg&gt; --save` afterwards to install a package and</div><div class="line">save it as a dependency <span class="keyword">in</span> the package.json file.</div><div class="line"></div><div class="line">Press ^C at any time to quit.</div><div class="line">name: (api-demo)</div><div class="line">version: (1.0.0)</div><div class="line">description: create restful api with nodejs</div><div class="line">entry point: (index.js) server.js</div><div class="line"><span class="built_in">test</span> <span class="built_in">command</span>:</div><div class="line">git repository:</div><div class="line">keywords:</div><div class="line">author:</div><div class="line">license: (ISC)</div><div class="line">About to write to /home/ahmed/api-demo/package.json:</div><div class="line"></div><div class="line">&#123;</div><div class="line">  <span class="string">"name"</span>: <span class="string">"api-demo"</span>,</div><div class="line">  <span class="string">"version"</span>: <span class="string">"1.0.0"</span>,</div><div class="line">  <span class="string">"description"</span>: <span class="string">"create restful api with nodejs"</span>,</div><div class="line">  <span class="string">"main"</span>: <span class="string">"server.js"</span>,</div><div class="line">  <span class="string">"scripts"</span>: &#123;</div><div class="line">    <span class="string">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="string">"author"</span>: <span class="string">""</span>,</div><div class="line">  <span class="string">"license"</span>: <span class="string">"ISC"</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">Is this ok? (yes) yes</div><div class="line">ahmed ~/api-demo [06:04:32]</div><div class="line">$</div></pre></td></tr></table></figure>
+<p>الخطوة التالية هي تثبيت الـ packages اللازمة لبرمجة سيرفر nodejs</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yarn add nodemon express body-parser morgan express-validator</div></pre></td></tr></table></figure>
+<p>ثم ننشئ ملف جافاسكربت جديد في نفس المجلد بإسم server.js وليكن محتواه كالتالي</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</div><div class="line"><span class="keyword">const</span> logger = <span class="built_in">require</span>(<span class="string">'morgan'</span>);</div><div class="line"><span class="keyword">const</span> bodyParser = <span class="built_in">require</span>(<span class="string">'body-parser'</span>);</div><div class="line"><span class="keyword">const</span> expressValidator = <span class="built_in">require</span>(<span class="string">'express-validator'</span>);</div><div class="line"></div><div class="line"><span class="comment">// Initializing the App</span></div><div class="line"><span class="keyword">const</span> app = express();</div><div class="line"></div><div class="line">app.use(logger(<span class="string">'dev'</span>));</div><div class="line">app.use(bodyParser.urlencoded(&#123; <span class="attr">extended</span>: <span class="literal">false</span> &#125;));</div><div class="line">app.use(bodyParser.json());</div><div class="line">app.use(expressValidator());</div><div class="line"></div><div class="line"><span class="comment">// Routes</span></div><div class="line">app.get(<span class="string">'/'</span>, (req, res)=&gt;&#123;</div><div class="line">  res.json(&#123;<span class="string">"success"</span>: <span class="literal">true</span>, <span class="string">'message'</span>: <span class="string">'Welcome to express server'</span>&#125;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// Starting the server</span></div><div class="line">app.listen(<span class="number">3000</span>, ()=&gt;&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">"Server is running at http://127.0.0.1:3000"</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/04/01/nodejs-api-introduction/" data-id="cj0yi5yhk0000ayh9t02n6t9p" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/04/01/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/04/01/nodejs-api-introduction/">Node API Tutorial-01- Introduction </a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/01/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
