@@ -1,14 +1,14 @@
----
-title:  "Node API Tutorial-01- Introduction "
+title: 'Node API Tutorial-01- Introduction '
+tags: []
+categories: []
+date: 2017-04-01 05:45:00
 ---
 # بسم الله الرحمن الرحيم
 
- أول مجموعة دروسة سيتم نشرها علي المدونة سنتكلم فيها عن كيفية  برمجة  restful-api  باستخدام  nodejs و express , لكن في مقالاتي هذه لن استخدم mongodb وهو المتبع في أغلب دروس  node لكني سأعمل علي واحدة من SQL Databases وهي PostgreSQL
+ أول مجموعة دروس سيتم نشرها علي المدونة سنتكلم فيها عن كيفية  برمجة  restful-api  باستخدام  nodejs و express , لكن في مقالاتي هذه لن استخدم mongodb وهو المتبع في أغلب دروس  node لكني سأعمل علي واحدة من SQL Databases وهي PostgreSQL
 
  لا يتسع المجال هنا للمقارنة بين أنواع قواعد البيانات المختلفة  SQL Vs NoSQL  كذلك إختياري  لـ PostgreSQL ماهو إلا تفضيل شخصي ولكن يمكنك إستخدام  MySQL أو حتي SQlite3 , أو أي قاعدة بيانات مدعومة من مكتبة Knex وهي اللتي وقع عليها إختياري لبساطتها و في نفس الوقت إمكانياتها المتقدمة
-
-
- كذلك سأستخدم مدير حزم Yarn بدلا من  npm  , يمكنك معرفة كيفية تثبيته من الموقع الخاص به .
+تجربة english 
 
 
 # 1- إنشاء ملف packages.json وتثبيت متطلبات المشروع
@@ -62,34 +62,71 @@ $
 
 
 ~~~bash
-yarn add nodemon express body-parser morgan express-validator
+npm install --save nodemon express  morgan 
 ~~~
 
-ثم ننشئ ملف جافاسكربت جديد في نفس المجلد بإسم server.js وليكن محتواه كالتالي
+1- الموديول nodemon يستخدم لتشغيل السيرفر بدلا من node بحيث يتابع  أي تغيير في الملفات ويعيد تشغيل السيرفر تلقائيا مما يسرع من عملية التطوير 
+2- الموديول express هو web framework لبناء تطبيقات الويب بـ nodejs
+3- الموديول morgan  يضيف logs مفيدة جدا لـ express , توضح لك أي request يستقبله السيرفر هكذا
+
+~~~bash
+GET / 200 4959.142 ms - 197
+GET /stylesheets/style.css 200 50.222 ms - 111
+Error
+GET /favicon.ico 404 567.070 ms - 1121
+Error
+GET /user 404 25.021 ms - 1121
+GET /stylesheets/style.css 304 3.451 ms - -
+GET /users 200 19.906 ms - 23
+~~~
+
+ننشئ ملف جافاسكربت جديد في نفس المجلد بإسم server.js وليكن محتواه كالتالي
 
 ~~~javascript
 const express = require('express');
 const logger = require('morgan');
-const bodyParser = require('body-parser');
-const expressValidator = require('express-validator');
 
 // Initializing the App
 const app = express();
 
 app.use(logger('dev'));
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(expressValidator());
 
 // Routes
 app.get('/', (req, res)=>{
   res.json({"success": true, 'message': 'Welcome to express server'});
 });
 
-
 // Starting the server
 app.listen(3000, ()=>{
   console.log("Server is running at http://127.0.0.1:3000")
 })
-
 ~~~
+
+هذا السيرفر يتضمن route واحد فقط وهو الرئيسي / ويكون الرد برسالة ترحيب
+
+أخيرا نعدل ملف packages.json عن طريق إضافة start script لتشغيل السيرفر
+
+~~~javascript
+{
+  "name": "api-demo",
+  "version": "1.0.0",
+  "description": "create restful api with nodejs",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
+~~~
+
+ثم نقوم بتشغيل السيرفر 
+
+~~~bash
+npm start
+~~~
+
+يمكنك الآن فتح المتصفح علي العنوان  http://127.0.0.1:3000 لتري النتيجة
+
+{% asset_img "img/basic_server.png"  Basic Node Server %}
