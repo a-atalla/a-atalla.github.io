@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html dir="rtl">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Atalla Dev Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Atalla Dev Blog">
+<meta property="og:url" content="https://a-atalla.github.io/index.html">
+<meta property="og:site_name" content="Atalla Dev Blog">
+<meta property="og:locale" content="default">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Atalla Dev Blog">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+
+  <!-- Add Custom fonts -->
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Lateef|Raleway');
+    body, .post{
+      font-family: 'Lateef' , 'Raleway', 'sans-serif' !important;
+      font-size: 1.2em !important;
+      
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav" dir="ltr">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://a-atalla.github.io"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+
+    <section id="main" class="outer">
+      <article id="post-nodejs-api-introduction" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/01/nodejs-api-introduction/">Node API Tutorial-01- Introduction </a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2017/04/01/nodejs-api-introduction/" class="article-date">
+  <time datetime="2017-04-01T03:45:00.000Z" itemprop="datePublished">2017-04-01</time>
+</a>
+      
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="بسم-الله-الرحمن-الرحيم"><a href="#بسم-الله-الرحمن-الرحيم" class="headerlink" title="بسم الله الرحمن الرحيم"></a>بسم الله الرحمن الرحيم</h1><p> أول مجموعة دروس سيتم نشرها علي المدونة سنتكلم فيها عن كيفية  برمجة  restful-api  باستخدام  nodejs و express , لكن في مقالاتي هذه لن استخدم mongodb وهو المتبع في أغلب دروس  node لكني سأعمل علي واحدة من SQL Databases وهي PostgreSQL</p>
+<p> لا يتسع المجال هنا للمقارنة بين أنواع قواعد البيانات المختلفة  SQL Vs NoSQL  كذلك إختياري  لـ PostgreSQL ماهو إلا تفضيل شخصي ولكن يمكنك إستخدام  MySQL أو حتي SQlite3 , أو أي قاعدة بيانات مدعومة من مكتبة Knex وهي اللتي وقع عليها إختياري لبساطتها و في نفس الوقت إمكانياتها المتقدمة<br>تجربة english </p>
+<h1 id="1-إنشاء-ملف-packages-json-وتثبيت-متطلبات-المشروع"><a href="#1-إنشاء-ملف-packages-json-وتثبيت-متطلبات-المشروع" class="headerlink" title="1- إنشاء ملف packages.json وتثبيت متطلبات المشروع"></a>1- إنشاء ملف packages.json وتثبيت متطلبات المشروع</h1><p> أول شئ نقوم بعمل مجلد جديد للمشروع وليكن بإسم <code>api-demo</code> ومن داخله يتم إنشاء ملف <code>packages.json</code> ولاحظ أننا غيرنا إسم الملف الافتراضي من <code>index.js</code> إلي <code>server.js</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">ahmed ~ [06:03:55]</span><br><span class="line">$ <span class="built_in">cd</span> api-demo/</span><br><span class="line">ahmed ~/api-demo [06:03:57]</span><br><span class="line">$ npm init</span><br><span class="line">This utility will walk you through creating a package.json file.</span><br><span class="line">It only covers the most common items, and tries to guess sensible defaults.</span><br><span class="line"></span><br><span class="line">See `npm <span class="built_in">help</span> json` <span class="keyword">for</span> definitive documentation on these fields</span><br><span class="line">and exactly what they <span class="keyword">do</span>.</span><br><span class="line"></span><br><span class="line">Use `npm install &lt;pkg&gt; --save` afterwards to install a package and</span><br><span class="line">save it as a dependency <span class="keyword">in</span> the package.json file.</span><br><span class="line"></span><br><span class="line">Press ^C at any time to quit.</span><br><span class="line">name: (api-demo)</span><br><span class="line">version: (1.0.0)</span><br><span class="line">description: create restful api with nodejs</span><br><span class="line">entry point: (index.js) server.js</span><br><span class="line"><span class="built_in">test</span> <span class="built_in">command</span>:</span><br><span class="line">git repository:</span><br><span class="line">keywords:</span><br><span class="line">author:</span><br><span class="line">license: (ISC)</span><br><span class="line">About to write to /home/ahmed/api-demo/package.json:</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"api-demo"</span>,</span><br><span class="line">  <span class="string">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">  <span class="string">"description"</span>: <span class="string">"create restful api with nodejs"</span>,</span><br><span class="line">  <span class="string">"main"</span>: <span class="string">"server.js"</span>,</span><br><span class="line">  <span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"author"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="string">"license"</span>: <span class="string">"ISC"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Is this ok? (yes) yes</span><br><span class="line">ahmed ~/api-demo [06:04:32]</span><br><span class="line">$</span><br></pre></td></tr></table></figure>
+<p>الخطوة التالية هي تثبيت الـ packages اللازمة لبرمجة سيرفر nodejs</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save nodemon express  morgan</span><br></pre></td></tr></table></figure>
+<p>1- الموديول nodemon يستخدم لتشغيل السيرفر بدلا من node بحيث يتابع  أي تغيير في الملفات ويعيد تشغيل السيرفر تلقائيا مما يسرع من عملية التطوير<br>2- الموديول express هو web framework لبناء تطبيقات الويب بـ nodejs<br>3- الموديول morgan  يضيف logs مفيدة جدا لـ express , توضح لك أي request يستقبله السيرفر هكذا</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET / 200 4959.142 ms - 197</span><br><span class="line">GET /stylesheets/style.css 200 50.222 ms - 111</span><br><span class="line">Error</span><br><span class="line">GET /favicon.ico 404 567.070 ms - 1121</span><br><span class="line">Error</span><br><span class="line">GET /user 404 25.021 ms - 1121</span><br><span class="line">GET /stylesheets/style.css 304 3.451 ms - -</span><br><span class="line">GET /users 200 19.906 ms - 23</span><br></pre></td></tr></table></figure>
+<p>ننشئ ملف جافاسكربت جديد في نفس المجلد بإسم server.js وليكن محتواه كالتالي</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">const</span> logger = <span class="built_in">require</span>(<span class="string">'morgan'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Initializing the App</span></span><br><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line"></span><br><span class="line">app.use(logger(<span class="string">'dev'</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// Routes</span></span><br><span class="line">app.get(<span class="string">'/'</span>, (req, res)=&gt;&#123;</span><br><span class="line">  res.json(&#123;<span class="string">"success"</span>: <span class="literal">true</span>, <span class="string">'message'</span>: <span class="string">'Welcome to express server'</span>&#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Starting the server</span></span><br><span class="line">app.listen(<span class="number">3000</span>, ()=&gt;&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"Server is running at http://127.0.0.1:3000"</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>هذا السيرفر يتضمن route واحد فقط وهو الرئيسي / ويكون الرد برسالة ترحيب</p>
+<p>أخيرا نعدل ملف packages.json عن طريق إضافة start script لتشغيل السيرفر</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"api-demo"</span>,</span><br><span class="line">  <span class="string">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">  <span class="string">"description"</span>: <span class="string">"create restful api with nodejs"</span>,</span><br><span class="line">  <span class="string">"main"</span>: <span class="string">"server.js"</span>,</span><br><span class="line">  <span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"start"</span>: <span class="string">"nodemon server.js"</span>,</span><br><span class="line">    <span class="string">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"author"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="string">"license"</span>: <span class="string">"ISC"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ثم نقوم بتشغيل السيرفر </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm start</span><br></pre></td></tr></table></figure>
+<p>يمكنك الآن فتح المتصفح علي العنوان  <a href="http://127.0.0.1:3000" target="_blank" rel="noopener">http://127.0.0.1:3000</a> لتري النتيجة</p>
+<img src="/2017/04/01/nodejs-api-introduction/img/basic_server.png" title="Basic Node Server">
+
+      
+    </div>
+    
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+    </section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Ahmed Atalla&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, theme by <a href="http://github.com/ppoffice">PPOffice</a>
+    </div>
+  </div>
+</footer>
+    
+<script>
+  var disqus_shortname = 'a-atalla-github-io';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
